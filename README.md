@@ -1,16 +1,16 @@
-P4A_OCR-TABLES
+### P4A_OCR-TABLES
 
-A module that exports scanned documents (image or .pdf files) to .html, recognizing tabular structures. A description of the recognition algorithm can be found here: [http]
+A module that exports scanned documents (image or .pdf files) to .html, recognizing tabular structures. A description of the recognition algorithm can be found here: [https://github.com/P4ALLcerthiti/P4ALL_OCR-TABLES/blob/master/ocrTables.pdf]
 
 The repository contains 4 directories
 
-1)[ocr_tables]() : This includes the source code that generates the OCR_TABLES.dll
+1) [ocr_tables](https://github.com/P4ALLcerthiti/P4ALL_OCR-TABLES/tree/master/ocr_tables) : This includes the source code that generates the OCR_TABLES.dll
 
-2)[App]() : This includes the source code for a sample Qt-based app to test the module
+2) [App](https://github.com/P4ALLcerthiti/P4ALL_OCR-TABLES/tree/master/App) : This includes the source code for a sample Qt-based app to test the module
 
-3)[tessdata]() : This includes the traindata necessary for the OCR engine
+3) [tessdata](https://github.com/P4ALLcerthiti/P4ALL_OCR-TABLES/tree/master/tessdata) : This includes the traindata necessary for the OCR engine
 
-4)[test files]() : This includes some sample files to test the module
+4) [test files](https://github.com/P4ALLcerthiti/P4ALL_OCR-TABLES/tree/master/test%20files) : This includes some sample files to test the module
 
 
 ### Dependencies
@@ -18,26 +18,14 @@ The repository contains 4 directories
 The following libraries were used to build and test the module. Older subversions may also be compatible
 
 [OpenCV 2.4.9] (http://opencv.org/) : Used by the ocr_tables module for image processing
-opencv_highgui249.lib
-opencv_imgproc249.lib
-opencv_core249.lib
 
 [MuPDF 1.7] (http://mupdf.com/) : Used by the ocr_tables module for pdf processing
-libmupdf.lib
-libthirdparty.lib
 
 [Tesseract-OCR 3.0.4] (https://github.com/tesseract-ocr/tesseract) : Used by the ocr_tables module for OCR
-libtesseract304.lib
 
 [Leptonica 1.7.1] (http://www.leptonica.com/) : Used by Tesseract-OCR for image processing
-liblept171.lib
 
 [Qt 5.1.0] (http://www.qt.io/download-open-source/) : Used to build the sample App
-qtmain.lib
-Qt5Core.lib
-Qt5Gui.lib
-Qt5Widgets.lib
-
 
 ### App usage
 
