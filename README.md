@@ -8,7 +8,7 @@ The repository contains 4 directories
 
 2) [App](https://github.com/P4ALLcerthiti/P4ALL_OCR-TABLES/tree/master/App) : This includes the source code for a sample Qt-based app to test the module
 
-3) [tessdata](https://github.com/P4ALLcerthiti/P4ALL_OCR-TABLES/tree/master/tessdata) : This includes the traindata necessary for the OCR engine
+3) [tessdata](https://github.com/P4ALLcerthiti/P4ALL_OCR-TABLES/tree/master/tessdata) : This includes the traindata necessary for the OCR engine. The tessdata folder must be in the same directory as the executable
 
 4) [test files](https://github.com/P4ALLcerthiti/P4ALL_OCR-TABLES/tree/master/test%20files) : This includes some sample files to test the module
 
