@@ -27,7 +27,7 @@ Also set /NODEFAULTLIB:"libcmt.lib"
 [Tesseract-OCR 3.0.4] (https://github.com/tesseract-ocr/tesseract) : Used by the ocr_tables module for OCR  
 libtesseract304.lib
 
-[Leptonica 1.7.1] (http://www.leptonica.com/) : Used by Tesseract-OCR for image processing  
+[Leptonica 1.7.1] (http://www.leptonica.com/) : Used by Tesseract-OCR for image processing, and for Document Image Analysis  
 liblept171.lib
 
 [Qt 5.1.0] (http://www.qt.io/download-open-source/) : Used to build the sample App  
@@ -53,9 +53,10 @@ Load an image or pdf file using the "LOAD" button. After the processing is finis
 
 ### Current limitations (to be updated in next version)
 
-The module currently supports single column horizontal text.
-The input data can be single image or pdf (single and multi page) files. In cases of multi-page files, the module checks for header-footers and removes them.
-Page segmentation for multiple text columns, non-manhattan layouts and images is not yet implemented
+The module works best for single column horizontal text, for both single and multi-page documents.
+Support for multi-column text and in-text images has been added in the updated version, however text/image segmentation may sometimes fail.
+Non-manhattan document layouts and vertical text are not supported yet
+
 
 ### Funding Acknowledgement
 

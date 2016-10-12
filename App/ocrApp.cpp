@@ -18,6 +18,7 @@ ocrApp::ocrApp(QWidget *parent)
 
 	tab = NULL;
 	tab = new ocr_tabs();
+
 }
 //////////////////////////////////////////////
 ocrApp::~ocrApp()
@@ -75,4 +76,5 @@ bool ocrApp::showBt()
 	std::string filenameHtml = QString(filename + ".html").toStdString();
 	ShellExecuteA(NULL, ("open"), (filenameHtml.c_str()), NULL, NULL, SW_SHOWNORMAL);
 	return true;
+}
 }

@@ -19,7 +19,7 @@ class ocr_tabs
 			OCRTABS_API ocr_tabs ();
 			OCRTABS_API ~ocr_tabs ();
 			void SetImage(Mat img);
-			void RemoveGridLines();
+			void RemoveGridLines(float ratio=1);
 			void OCR_Recognize();
 			void BoxesAndWords();
 			void TextBoundaries();
