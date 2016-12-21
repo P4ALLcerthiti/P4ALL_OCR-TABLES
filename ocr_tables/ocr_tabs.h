@@ -52,10 +52,13 @@ class ocr_tabs
 
 			void ResetImage();
 			Mat ImagePreproccesing(Mat img);
+			bool ImagePreproccesing_withXML(const std::string& fileXML, std::vector<cv::Mat>& imageRAW, std::vector<cv::Mat>& imageCLN);
 			
 			bool fail_condition();
 			bool OCRTABS_API pdf2html (const std::string& filename);
 			bool OCRTABS_API img2html (const std::string& filename);
+			bool OCRTABS_API pdf2html_withXML (const std::string& filename, const std::string& filenameXML);
+			bool OCRTABS_API img2html_withXML (const std::string& filename, const std::string& filenameXML);
 			bool parsePDF(const std::string& filename, std::vector<cv::Mat>& imageList);
 			void resetAll();
 

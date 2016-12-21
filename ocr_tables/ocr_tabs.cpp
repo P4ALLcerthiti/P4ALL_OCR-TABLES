@@ -2226,3 +2226,136 @@ bool ocr_tabs::parsePDF(const std::string& filename, std::vector<cv::Mat>& image
 	return true;
 }
 //////////////////////////////////////////////////////////////
+bool ocr_tabs::ImagePreproccesing_withXML(const std::string& fileXML, std::vector<cv::Mat>& imageRAW, std::vector<cv::Mat>& imageCLN)
+{
+	std::ifstream file(fileXML);
+	if (!file.is_open()) return false;
+	for (int i=0;i<imageRAW.size();i++)
+	{
+		imageCLN.push_back(cv::Mat(imageRAW[i].size(),imageRAW[i].type()));
+		imageCLN[i].setTo(cv::Scalar(255));
+
+		cv::Mat mask;
+		bool inText=false;
+		float resiz=-1;
+		std::string str;
+		while (std::getline(file, str))
+		{
+			if (resiz==-1)
+			{
+				std::size_t foundW = str.find("<page width=");
+				if (foundW!=std::string::npos)
+				{
+					resiz = (float) imageRAW[i].cols/std::stoi(str.substr(foundW+13, str.find("height=")-2-foundW-13)); 
+					mask=cv::Mat::zeros(imageRAW[i].rows/resiz,imageRAW[i].cols/resiz,CV_8UC1);
+				}
+			}
+			else if (str.find("<line baseline")!=std::string::npos && inText)
+			{
+				std::size_t found_l = str.find(" l=\"");
+				std::size_t found_t = str.find(" t=\"");
+				std::size_t found_r = str.find(" r=\"");
+				std::size_t found_b = str.find(" b=\"");
+				std::size_t found_f = str.find("\"><formatting");
+
+				int left=std::stoi(str.substr(found_l+4,found_t-1-found_l-4));
+				int top=std::stoi(str.substr(found_t+4,found_r-1-found_t-4));
+				int right=std::stoi(str.substr(found_r+4,found_b-1-found_r-4));
+				int bottom=std::stoi(str.substr(found_b+4,found_f-found_b-4));
+
+				mask(cv::Rect(left,top,right-left,bottom-top)).setTo(1);
+			}
+			else if(str.find("<block blockType=\"Text")!=std::string::npos || str.find("<block blockType=\"Table")!=std::string::npos) inText=true;
+			else if(str.find("</block>")!=std::string::npos) inText=false;
+			else if(str.find("</page>")!=std::string::npos)
+			{
+				cv::resize(mask,mask,imageRAW[i].size());
+				imageRAW[i].copyTo(imageCLN[i],mask);
+				
+				//imgProcessor::thresholdImg(imageCLN[i], imageCLN[i]);
+				//cv::erode(imageCLN[i],imageCLN[i],cv::Mat(), cv::Point(-1,-1), 1);
+
+				break;
+			}
+		} 
+
+	}
+	file.close();
+	return true;
+}
+//////////////////////////////////////////////////////////////
+bool ocr_tabs::pdf2html_withXML (const std::string& filename, const std::string& filenameXML)
+{
+	resetAll();
+	std::vector<cv::Mat> pages,pages_clean;
+	if (!parsePDF(filename, pages)) return false;
+	if (!ImagePreproccesing_withXML(filenameXML,pages,pages_clean)) {cout << "Preprocessing with XML failed\n"; return false;}
+	if (pages.size()==1)
+	{
+		SetImage(pages_clean[0]);
+		//RemoveGridLines();
+		OCR_Recognize();
+		BoxesAndWords();
+		TextBoundaries();
+	}
+	else
+	{
+		for (int i=0;i<pages.size();i++)
+		{
+			SetImage(pages_clean[i]);
+			//RemoveGridLines();
+			PrepareMulti1();
+		}
+		HeadersFooters();
+		PrepareMulti2();
+	}
+	TextLines();
+	LineSegments();
+	LineTypes();
+	TableAreas();
+	TableRows();
+	TableColumns(); ////
+	if (fail_condition())
+	{
+		cout<<"\nfailCondition\n";
+		return false;
+	}
+	TableMultiRows();
+	ColumnSize();	 ////
+	FinalizeGrid(); ////
+	std::string outputFilename = filename;
+	outputFilename.append("XML.html");
+	WriteHTML(outputFilename);
+	return true;
+}
+//////////////////////////////////////////////////////////////
+bool ocr_tabs::img2html_withXML (const std::string& filename, const std::string& filenameXML)
+{
+	resetAll();
+	std::vector<cv::Mat> imageList,imageClean;
+	imageList.push_back(cv::imread(filename,CV_LOAD_IMAGE_GRAYSCALE));	
+	if (imageList[0].empty()) {cout << "File not available\n"; return false;}
+	if (!ImagePreproccesing_withXML(filenameXML,imageList,imageClean)) {cout << "Preprocessing with XML failed\n"; return false;}
+	SetImage(imageClean[0]);
+	OCR_Recognize();
+	BoxesAndWords();
+	TextBoundaries();
+	TextLines();
+	LineSegments();
+	LineTypes();
+	TableAreas();
+	TableRows();
+	TableColumns(); ////
+	if (fail_condition())
+	{
+		cout<<"\nfailCondition\n";
+		return false;
+	}
+	TableMultiRows();
+	ColumnSize();	 ////
+	FinalizeGrid(); ////
+	std::string outputFilename = filename;
+	outputFilename.append("XML.html");
+	WriteHTML(outputFilename);
+	return true;
+}
