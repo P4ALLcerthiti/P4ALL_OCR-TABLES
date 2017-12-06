@@ -58,16 +58,16 @@ Support for multi-column text and in-text images has been added in the updated v
 Non-manhattan document layouts and vertical text are not supported yet
 
 ### Citation
-Please cite this paper in your publications if it helps your research:
+Please cite the following paper in your publications if it helps your research:
 
-@inproceedings{vasileiadis2017extraction,
-  title={Extraction of Tabular Data from Document Images},
-  author={Vasileiadis, Manolis and Kaklanis, Nikolaos and Votis, Konstantinos and Tzovaras, Dimitrios},
-  booktitle={Proceedings of the 14th Web for All Conference on The Future of Accessible Work},
-  pages={24},
-  year={2017},
-  organization={ACM}
-}
+    @inproceedings{vasileiadis2017extraction,
+      author = {Vasileiadis, Manolis and Kaklanis, Nikolaos and Votis, Konstantinos and Tzovaras, Dimitrios},
+      booktitle = {Proceedings of the 14th Web for All Conference on The Future of Accessible Work},
+      title = {Extraction of Tabular Data from Document Images},
+      pages={24},
+      organization={ACM},
+      year = {2017}
+    }  
 
 ### Funding Acknowledgement
 
