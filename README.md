@@ -2,7 +2,7 @@
 
 A module that exports scanned documents (image or .pdf files) to .html, recognizing tabular structures. A description of the recognition algorithm can be found here: [ocrTables.pdf](https://github.com/P4ALLcerthiti/P4ALL_OCR-TABLES/blob/master/ocrTables.pdf)
 
-The repository contains 4 directories
+The repository contains 5 directories
 
 1) [ocr_tables](https://github.com/P4ALLcerthiti/P4ALL_OCR-TABLES/tree/master/ocr_tables) : This includes the source code that generates the OCR_TABLES.dll
 
@@ -11,6 +11,8 @@ The repository contains 4 directories
 3) [tessdata](https://github.com/P4ALLcerthiti/P4ALL_OCR-TABLES/tree/master/tessdata) : This includes the traindata necessary for the OCR engine. The tessdata folder must be in the same directory as the executable
 
 4) [test files](https://github.com/P4ALLcerthiti/P4ALL_OCR-TABLES/tree/master/test%20files) : This includes some sample files to test the module
+
+5) [WebService](https://github.com/P4ALLcerthiti/P4ALL_OCR-TABLES/tree/master/WebService) : This includes the .php files for a sample webservice implementation
 
 
 ### Dependencies
@@ -47,9 +49,13 @@ tab->pdf2html(filename.toStdString();
 tab->img2html(filename.toStdString();
 ```
 
-### App usage
+### Standalone App usage
 
 Load an image or pdf file using the "LOAD" button. After the processing is finished an html file is create at "filename" + .html which can be opened using the "SHOW" button
+
+### WebService App usage
+
+Define "_SERVICE" to build the App in console mode, without GUI. The application takes as an argument a filename (image or .pdf) and produces the .html file. In this mode it can be called from a webservice
 
 ### Current limitations (to be updated in next version)
 
