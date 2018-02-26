@@ -1,6 +1,6 @@
 ### P4A_OCR-TABLES
 
-A module that exports scanned documents (image or .pdf files) to .html, recognizing tabular structures. A description of the recognition algorithm can be found here: [ocrTables.pdf](https://github.com/P4ALLcerthiti/P4ALL_OCR-TABLES/blob/master/ocrTables.pdf)
+A module that exports scanned documents (image or .pdf files) to .html, recognizing tabular structures. A description of the recognition algorithm can be found here: [Extraction of Tabular Data from Document Images](https://doi.org/10.1145/3058555.3058581)
 
 The repository contains 5 directories
 
@@ -63,6 +63,17 @@ The module works best for single column horizontal text, for both single and mul
 Support for multi-column text and in-text images has been added in the updated version, however text/image segmentation may sometimes fail.
 Non-manhattan document layouts and vertical text are not supported yet
 
+### Citation
+Please cite the following paper in your publications if it helps your research:
+
+    @inproceedings{vasileiadis2017extraction,
+      author = {Vasileiadis, Manolis and Kaklanis, Nikolaos and Votis, Konstantinos and Tzovaras, Dimitrios},
+      booktitle = {Proceedings of the 14th Web for All Conference on The Future of Accessible Work},
+      title = {Extraction of Tabular Data from Document Images},
+      pages={24},
+      organization={ACM},
+      year = {2017}
+    }  
 
 ### Funding Acknowledgement
 
